@@ -1,4 +1,4 @@
-function playPage() {
+function PlayPage() {
   return (
     <div>
       {/* Create a game screen */}
@@ -15,7 +15,9 @@ function playPage() {
       </div>
       {/* Prompt 1  */}
       <div>
-        <h3>Player 1 is answerting the question, while Player 2 is listening...</h3>
+        <h3>
+          Player 1 is answerting the question, while Player 2 is listening...
+        </h3>
         <button>Ready!</button>
       </div>
       {/* Question  */}
@@ -32,11 +34,11 @@ function playPage() {
       {/* Game Over  */}
       <div>
         <h3>Game over!</h3>
-        <button>Play again?</button> 
-        <button>return to Homepage</button> 
+        <button>Play again?</button>
+        <button>return to HomePage</button>
       </div>
     </div>
   );
 }
 
-export default playPage;
+export default PlayPage;

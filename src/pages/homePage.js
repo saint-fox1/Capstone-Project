@@ -1,4 +1,4 @@
-function homePage() {
+function HomePage() {
   return (
     <div>
       <h1>30 Seconds - GO!</h1>
@@ -23,4 +23,4 @@ function homePage() {
   );
 }
 
-export default homePage;
+export default HomePage;
