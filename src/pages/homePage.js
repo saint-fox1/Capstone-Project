@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function HomePage() {
   return (
     <div>
@@ -17,7 +19,7 @@ function HomePage() {
           since the 1500s, when an unknown printer took a galley of type and
           scrambled it to make a type specimen book.
         </p>
-        <button>Create a Game</button>
+        <Link to="/play"> Return to HomePage</Link>
       </div>
     </div>
   );
