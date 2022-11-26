@@ -19,7 +19,7 @@ function HomePage() {
           since the 1500s, when an unknown printer took a galley of type and
           scrambled it to make a type specimen book.
         </p>
-        <Link to="/play"> Return to HomePage</Link>
+        <Link to="/play"> Create a Game!</Link>
       </div>
     </div>
   );

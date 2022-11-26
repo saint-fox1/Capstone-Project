@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const GAME_STATE = {
@@ -10,21 +10,38 @@ const GAME_STATE = {
 
 function PlayPage() {
   const [page, setPage] = useState(GAME_STATE.GAME_SETUP);
+
+  //CountDown Timer
+  const [time, setTime] = useState(30);
+
+  useEffect(() => {
+    if (page === GAME_STATE.QUESTION) {
+      const interval = setInterval(() => {
+        setTime(time - 1);
+      }, 1000);
+      if (time === 0) {
+        clearInterval(interval);
+        console.log(time);
+      }
+      return () => clearInterval(interval);
+    }
+  });
+
   return (
     <div>
       {/* Game Setup */}
       {page === GAME_STATE.GAME_SETUP && (
         <div>
-          <h3>Who is playing</h3>
+          <h3>Who is playing?</h3>
           <p>Player 1</p>
           <p>Player 2</p>
           <h3>Pick your category</h3>
-          <p>corporate</p>
-          <p>party</p>
-          <p>amigos</p>
-          <p>caliente</p>
+          <p>CORPORATE</p>
+          <p>PARTY</p>
+          <p>AMIGOS</p>
+          <p>CALIENTE</p>
           <button onClick={() => setPage(GAME_STATE.INSTRUCTION_PROMPT)}>
-            Play
+            Ready to play!
           </button>
         </div>
       )}
@@ -41,7 +58,7 @@ function PlayPage() {
       {page === GAME_STATE.QUESTION && (
         <div>
           <h3>Question </h3>
-          <p>Timer started</p>
+          <p>00:{time}</p>
           <button onClick={() => setPage(GAME_STATE.GAME_OVER)}>Next</button>
         </div>
       )}
