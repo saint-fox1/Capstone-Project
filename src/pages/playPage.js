@@ -10,6 +10,7 @@ const GAME_STATE = {
 
 function PlayPage() {
   const [page, setPage] = useState(GAME_STATE.GAME_SETUP);
+  const [playerName, setPlayerName] = useState("Player 1");
 
   //CountDown Timer
   const [time, setTime] = useState(30);
@@ -29,22 +30,7 @@ function PlayPage() {
 
   return (
     <div>
-      {/* Game Setup */}
-      {page === GAME_STATE.GAME_SETUP && (
-        <div>
-          <h3>Who is playing?</h3>
-          <p>Player 1</p>
-          <p>Player 2</p>
-          <h3>Pick your category</h3>
-          <p>CORPORATE</p>
-          <p>PARTY</p>
-          <p>AMIGOS</p>
-          <p>CALIENTE</p>
-          <button onClick={() => setPage(GAME_STATE.INSTRUCTION_PROMPT)}>
-            Ready to play!
-          </button>
-        </div>
-      )}
+    
       {/* Prompt One  */}
       {page === GAME_STATE.INSTRUCTION_PROMPT && (
         <div>

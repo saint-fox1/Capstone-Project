@@ -19,6 +19,20 @@ function HomePage() {
           since the 1500s, when an unknown printer took a galley of type and
           scrambled it to make a type specimen book.
         </p>
+        {/* Game Setup */}
+        <div>
+          <h3>Who is playing?</h3>
+          <p>Player 1</p>
+          <p>Player 2</p>
+          <h3>Pick your category</h3>
+          <p>CORPORATE</p>
+          <p>PARTY</p>
+          <p>AMIGOS</p>
+          <p>CALIENTE</p>
+          {/* <button onClick={() => setPage(GAME_STATE.INSTRUCTION_PROMPT)}>
+            Ready to play!
+          </button> */}
+        </div>
         <Link to="/play"> Create a Game!</Link>
       </div>
     </div>
