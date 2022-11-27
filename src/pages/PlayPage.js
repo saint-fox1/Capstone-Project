@@ -1,17 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const GAME_STATE = {
-  GAME_SETUP: 0,
-  INSTRUCTION_PROMPT: 1,
-  QUESTION: 2,
-  GAME_OVER: 3,
+  INSTRUCTION_PROMPT: 0,
+  QUESTION: 1,
+  GAME_OVER: 2,
 };
 
-function PlayPage() {
-  const [page, setPage] = useState(GAME_STATE.GAME_SETUP);
-  const [playerName, setPlayerName] = useState("Player 1");
+function useQuery() {
+  const { search } = useLocation();
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+}
 
+function PlayPage(props) {
+  const query = useQuery();
+  const [page, setPage] = useState(GAME_STATE.INSTRUCTION_PROMPT);
+  const [playerOne, setPlayerOne] = useState(
+    query.get("player_one") || "Player 1"
+  );
+  const [playerTwo, setPlayerTwo] = useState(
+    query.get("player_two") || "Player 2"
+  );
+  const [category, setCategory] = useState(
+    query.get("category") || "corporate"
+  );
+//   console.log(query.get("player_one"));
   //CountDown Timer
   const [time, setTime] = useState(30);
 
@@ -30,7 +43,6 @@ function PlayPage() {
 
   return (
     <div>
-    
       {/* Prompt One  */}
       {page === GAME_STATE.INSTRUCTION_PROMPT && (
         <div>
