@@ -12,7 +12,7 @@ function useQuery() {
   return React.useMemo(() => new URLSearchParams(search), [search]);
 }
 
-function PlayPage(props) {
+function PlayPage() {
   const query = useQuery();
   const [page, setPage] = useState(GAME_STATE.INSTRUCTION_PROMPT);
   const [playerOne, setPlayerOne] = useState(
@@ -24,22 +24,25 @@ function PlayPage(props) {
   const [category, setCategory] = useState(
     query.get("category") || "corporate"
   );
-//   console.log(query.get("player_one"));
-  //CountDown Timer
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const [questions, setQuestions] = useState([
+    "question 1",
+    "question 2",
+    "question 3",
+    "question 4",
+    "question 5",
+  ]);
   const [time, setTime] = useState(30);
 
   useEffect(() => {
     if (page === GAME_STATE.QUESTION) {
-      const interval = setInterval(() => {
-        setTime(time - 1);
-      }, 1000);
+      const interval = setInterval(() => setTime(time - 1), 1000);
       if (time === 0) {
         clearInterval(interval);
-        console.log(time);
       }
       return () => clearInterval(interval);
     }
-  });
+  }, [page, time]);
 
   return (
     <div>
@@ -47,27 +50,42 @@ function PlayPage(props) {
       {page === GAME_STATE.INSTRUCTION_PROMPT && (
         <div>
           <h3>
-            Player 1 is answerting the question, while Player 2 is listening...
+            {playerOne} is answerting the question, while {playerTwo} is
+            listening...
           </h3>
-          <button onClick={() => setPage(GAME_STATE.QUESTION)}>Ready!</button>
+          <button
+            onClick={() => {
+              setPage(GAME_STATE.QUESTION);
+              setTime(30);
+            }}
+          >
+            Ready!
+          </button>
         </div>
       )}
       {/* Question  */}
       {page === GAME_STATE.QUESTION && (
         <div>
-          <h3>Question </h3>
-          <p>00:{time}</p>
-          <button onClick={() => setPage(GAME_STATE.GAME_OVER)}>Next</button>
+          <h3>{questions[questionIndex]}</h3>
+          <p>{time} sec</p>
+          <button
+            onClick={() => {
+              setQuestionIndex(questionIndex + 1);
+              if (questionIndex === questions.length - 1) {
+                setPage(GAME_STATE.GAME_OVER);
+              } else setPage(GAME_STATE.INSTRUCTION_PROMPT);
+            }}
+          >
+            Next
+          </button>
         </div>
       )}
       {/* Game Over  */}
       {page === GAME_STATE.GAME_OVER && (
         <div>
           <h3>Game over!</h3>
-          <button onClick={() => setPage(GAME_STATE.GAME_SETUP)}>
-            Play again?
-          </button>
-          <Link to="/"> Return to HomePage</Link>
+          <Link to="/">Play again?</Link>
+          <Link to="/">Return to HomePage</Link>
         </div>
       )}
     </div>
