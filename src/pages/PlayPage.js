@@ -15,16 +15,6 @@ function useQuery() {
 function PlayPage() {
   const query = useQuery();
   const [page, setPage] = useState(GAME_STATE.INSTRUCTION_PROMPT);
-  const [playerOne, setPlayerOne] = useState(
-    query.get("player_one") || "Player 1"
-  );
-  const [playerTwo, setPlayerTwo] = useState(
-    query.get("player_two") || "Player 2"
-  );
-
-  const [category, setCategory] = useState(
-    query.get("category") || "corporate"
-  );
   const [questionIndex, setQuestionIndex] = useState(0);
   const [questions, setQuestions] = useState([
     "question 1",
@@ -35,6 +25,10 @@ function PlayPage() {
   const [time, setTime] = useState(30);
   const [isPlayerOneTurn, setIsPlayerOneTurn] = useState(true);
 
+  const playerOne = query.get("player_one") || "Player 1";
+  const playerTwo = query.get("player_two") || "Player 2";
+  const category = query.get("category") || "corporate";
+  
   useEffect(() => {
     if (page === GAME_STATE.QUESTION) {
       const interval = setInterval(() => setTime(time - 1), 1000);
@@ -51,9 +45,8 @@ function PlayPage() {
       {page === GAME_STATE.INSTRUCTION_PROMPT && (
         <div>
           <h3>
-            {isPlayerOneTurn ? playerOne : playerTwo} is answering the
-            question, while {isPlayerOneTurn ? playerTwo : playerOne} is
-            listening...
+            {isPlayerOneTurn ? playerOne : playerTwo} is answering the question,
+            while {isPlayerOneTurn ? playerTwo : playerOne} is listening...
           </h3>
           <button
             onClick={() => {
