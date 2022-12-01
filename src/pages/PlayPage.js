@@ -21,6 +21,7 @@ function PlayPage() {
   const [playerTwo, setPlayerTwo] = useState(
     query.get("player_two") || "Player 2"
   );
+
   const [category, setCategory] = useState(
     query.get("category") || "corporate"
   );
@@ -30,9 +31,9 @@ function PlayPage() {
     "question 2",
     "question 3",
     "question 4",
-    "question 5",
   ]);
   const [time, setTime] = useState(30);
+  const [isPlayerOneTurn, setIsPlayerOneTurn] = useState(true);
 
   useEffect(() => {
     if (page === GAME_STATE.QUESTION) {
@@ -50,13 +51,15 @@ function PlayPage() {
       {page === GAME_STATE.INSTRUCTION_PROMPT && (
         <div>
           <h3>
-            {playerOne} is answerting the question, while {playerTwo} is
+            {isPlayerOneTurn ? playerOne : playerTwo} is answering the
+            question, while {isPlayerOneTurn ? playerTwo : playerOne} is
             listening...
           </h3>
           <button
             onClick={() => {
               setPage(GAME_STATE.QUESTION);
               setTime(30);
+              setIsPlayerOneTurn(!isPlayerOneTurn);
             }}
           >
             Ready!
