@@ -41,6 +41,7 @@ function PlayPage() {
 
   return (
     <div>
+
       {/* Prompt One  */}
       {page === GAME_STATE.INSTRUCTION_PROMPT && (
         <div>
@@ -57,6 +58,7 @@ function PlayPage() {
           >
             Ready!
           </button>
+
         </div>
       )}
       {/* Question  */}
@@ -74,6 +76,7 @@ function PlayPage() {
           >
             Next
           </button>
+
         </div>
       )}
       {/* Game Over  */}
@@ -82,6 +85,7 @@ function PlayPage() {
           <h3>Game over!</h3>
           <Link to="/">Play again?</Link>
           <Link to="/">Return to HomePage</Link>
+
         </div>
       )}
     </div>
