@@ -2,41 +2,41 @@
   {
     "id": "1",
     "category": "corporate",
-    "text": "question1"
+    "text": "What inspires you?"
   },
   {
     "id": "2",
     "category": "corporate",
-    "text": "question2"
+    "text": "What do you value the most in the workplace?"
   },
   {
     "id": "3",
     "category": "party",
-    "text": "question3"
+    "text": "What's your drink of choice?"
   },
   {
     "id": "4",
     "category": "party",
-    "text": "question4"
+    "text": "What is your biggest pet peeve?"
   },
   {
     "id": "5",
     "category": "amigos",
-    "text": "question5"
+    "text": "What is your biggest fear?"
   },
   {
     "id": "6",
     "category": "amigos",
-    "text": "question6"
+    "text": "Who did you want to be when you grow up when you were a kid?"
   },
   {
     "id": "7",
     "category": "caliente",
-    "text": "question7"
+    "text": "What is your fondest memory together?"
   },
   {
     "id": "8",
     "category": "caliente",
-    "text": "question8"
+    "text": "What is your ideal date?"
   }
 ]
