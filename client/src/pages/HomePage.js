@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 function HomePage() {
   const [playerOne, setPlayerOne] = useState("");
   const [playerTwo, setPlayerTwo] = useState("");
   const [category, setCategory] = useState("");
+  const [categories, setCategories] = useState();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -14,6 +16,19 @@ function HomePage() {
       `/play?player_one=${playerOne}&player_two=${playerTwo}&category=${category}`
     );
   };
+
+  useEffect(() => {
+    if (!categories) {
+      axios
+        .get("http://localhost:8080/categories/")
+        .then((response) => {
+          setCategories(response.data);
+        })
+        .catch((e) => {
+          console.error("The error:", e);
+        });
+    }
+  }, [categories]);
 
   return (
     <div>
@@ -48,7 +63,7 @@ function HomePage() {
               onChange={(e) => setPlayerOne(e.target.value)}
             />
             <br />
-            <label for="playerTwo">Player 2</label>
+            <label htmlFor="playerTwo">Player 2</label>
             <br />
             <input
               placeholder="Name"
@@ -58,37 +73,20 @@ function HomePage() {
               onChange={(e) => setPlayerTwo(e.target.value)}
             />
             <br />
-
             <h3>Pick your category</h3>
-            <input
-              name="category"
-              type="radio"
-              value="corporate"
-              onChange={(e) => setCategory(e.target.value)}
-            />
-            <label>CORPORATE</label>
-            <input
-              name="category"
-              type="radio"
-              value="party"
-              onChange={(e) => setCategory(e.target.value)}
-            />
-            <label>PARTY</label>
-            <input
-              name="category"
-              type="radio"
-              value="amigos"
-              onChange={(e) => setCategory(e.target.value)}
-            />
-            <label>AMIGOS</label>
-            <input
-              name="category"
-              type="radio"
-              value="caliente"
-              onChange={(e) => setCategory(e.target.value)}
-            />
-            <label>CALIENTE</label>
-            <br />
+            {categories?.map((element, index) => {
+              return (
+                <div key={`category-${index}`}>
+                  <input
+                    name="category"
+                    type="radio"
+                    value={element.name}
+                    onChange={(e) => setCategory(e.target.value)}
+                  />
+                  <label>{element.name}</label>
+                </div>
+              );
+            })}
             <input
               className="submitButton"
               type="submit"
