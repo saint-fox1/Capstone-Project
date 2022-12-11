@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import axios from "axios";
 
 const GAME_STATE = {
   INSTRUCTION_PROMPT: 0,
@@ -16,19 +17,14 @@ function PlayPage() {
   const query = useQuery();
   const [page, setPage] = useState(GAME_STATE.INSTRUCTION_PROMPT);
   const [questionIndex, setQuestionIndex] = useState(0);
-  const [questions, setQuestions] = useState([
-    "question 1",
-    "question 2",
-    "question 3",
-    "question 4",
-  ]);
+  const [questions, setQuestions] = useState();
   const [time, setTime] = useState(30);
   const [isPlayerOneTurn, setIsPlayerOneTurn] = useState(true);
 
   const playerOne = query.get("player_one") || "Player 1";
   const playerTwo = query.get("player_two") || "Player 2";
   const category = query.get("category") || "corporate";
-  
+
   useEffect(() => {
     if (page === GAME_STATE.QUESTION) {
       const interval = setInterval(() => setTime(time - 1), 1000);
@@ -39,9 +35,26 @@ function PlayPage() {
     }
   }, [page, time]);
 
+  useEffect(() => {
+    if (!questions) {
+      axios
+        .get(`http://localhost:8080/questions?category=${category}`)
+        .then((response) => {
+          setQuestions(response.data);
+        })
+        .catch((e) => {
+          console.error("The error:", e);
+        });
+    }
+    console.log(questions);
+  }, [questions]);
+
+  if (!questions) {
+    return "Loading";
+  }
+
   return (
     <div>
-
       {/* Prompt One  */}
       {page === GAME_STATE.INSTRUCTION_PROMPT && (
         <div>
@@ -58,13 +71,12 @@ function PlayPage() {
           >
             Ready!
           </button>
-
         </div>
       )}
       {/* Question  */}
       {page === GAME_STATE.QUESTION && (
         <div>
-          <h3>{questions[questionIndex]}</h3>
+          <h3>{questions[questionIndex].text}</h3>
           <p>{time} sec</p>
           <button
             onClick={() => {
@@ -76,7 +88,6 @@ function PlayPage() {
           >
             Next
           </button>
-
         </div>
       )}
       {/* Game Over  */}
@@ -85,7 +96,6 @@ function PlayPage() {
           <h3>Game over!</h3>
           <Link to="/">Play again?</Link>
           <Link to="/">Return to HomePage</Link>
-
         </div>
       )}
     </div>
