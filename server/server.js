@@ -13,4 +13,6 @@ app.use(express.json());
 app.use("/categories", categoriesRouter);
 app.use("/questions", questionsRouter);
 
-app.listen(PORT);
+app.listen(PORT, ()=>{
+    console.log("I am listening")
+});
