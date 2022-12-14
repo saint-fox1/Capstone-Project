@@ -1,8 +1,8 @@
 import "./App.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import HomePage from "./pages/HomePage.js";
-import PlayPage from "./pages/PlayPage.js";
+import HomePage from "./pages/homePage/HomePage.js";
+import PlayPage from "./pages/playPage/PlayPage.js";
 
 function App() {
   const router = createBrowserRouter([
