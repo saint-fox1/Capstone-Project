@@ -1,18 +1,14 @@
 [
   {
-    "id": "01",
-    "name": "corporate"
+    "name": "Corporate"
   },
   {
-    "id": "02",
-    "name": "party"
+    "name": "Party"
   },
   {
-    "id": "03",
-    "name": "amigos"
+    "name": "Amigos"
   },
   {
-    "id": "04",
-    "name": "caliente"
+    "name": "Caliente"
   }
 ]

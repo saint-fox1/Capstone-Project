@@ -12,6 +12,15 @@ router.get("/", function (req, res) {
     (question) => question.category === category
   );
   let result = [];
+
+  if (relevantQuestions.length < 4) {
+    res.status(400);
+    res.send({
+      error: "No questions found!",
+    });
+    return;
+  }
+
   while (result.length < 4) {
     const index = getRandomInt(relevantQuestions.length - 1);
     result.push(relevantQuestions[index]);
