@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./HomePage.scss";
 
 function HomePage() {
   const [playerOne, setPlayerOne] = useState("");
@@ -31,23 +32,34 @@ function HomePage() {
   }, [categories]);
 
   return (
-    <div>
+    <div className="main-content-wrapper">
       <h1>30 Seconds - GO!</h1>
       <div>
         <h2>About</h2>
         <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book.
+          This game will bring you closer to anyone, whether it is a friend,
+          colleague or a crush you've been meaning to make a move on. Both of
+          you get to ask each other questions and get sincere answers. Sincere,
+          because you won't get time to think them through! On top of that, you
+          get to talk for 30 seconds straight and no one can interrupt you. Who
+          knows, you might just learn something new and unpredicted about each
+          other.
         </p>
         <h2>How to</h2>
         <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book.
+          You only need 2 players for this game. Players take turns asking each
+          other a question that they see in the prompt. The player whose turn to
+          answer, gets 30 seconds to talk. The caveat is that they HAVE to KEEP
+          TALKING non-stop, even if they derailed from the original question.
+          Then, players switch. Choose your category, depending on how spicy you
+          want the questions to be.
         </p>
+        <h2>Rules</h2>
+        <ul>
+          <li>Shush while the other person is talking</li>
+          <li>If you are talking, keep talking - about anything really </li>
+          <li>Relax and don't take yourselves too seriously</li>
+        </ul>
 
         {/* Game Setup */}
         <div>
