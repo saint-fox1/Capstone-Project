@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
+import Button from "../../components/button/Button";
 
 const GAME_STATE = {
   INSTRUCTION_PROMPT: 0,
@@ -62,7 +63,8 @@ function PlayPage() {
             {isPlayerOneTurn ? playerOne : playerTwo} is answering the question,
             while {isPlayerOneTurn ? playerTwo : playerOne} is listening...
           </h3>
-          <button
+          <Button
+            text="Next"
             onClick={() => {
               setPage(GAME_STATE.QUESTION);
               setTime(30);
@@ -70,7 +72,7 @@ function PlayPage() {
             }}
           >
             Ready!
-          </button>
+          </Button>
         </div>
       )}
       {/* Question  */}
@@ -78,16 +80,15 @@ function PlayPage() {
         <div>
           <h3>{questions[questionIndex].text}</h3>
           <p>{time} sec</p>
-          <button
+          <Button
+            text="Next"
             onClick={() => {
               setQuestionIndex(questionIndex + 1);
               if (questionIndex === questions.length - 1) {
                 setPage(GAME_STATE.GAME_OVER);
               } else setPage(GAME_STATE.INSTRUCTION_PROMPT);
             }}
-          >
-            Next
-          </button>
+          ></Button>
         </div>
       )}
       {/* Game Over  */}
