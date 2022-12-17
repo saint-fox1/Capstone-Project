@@ -3,12 +3,16 @@
 .text-field {
   padding: 1rem;
 
+  &__label {
+    display: block;
+    margin: 0.5rem;
+  }
+
   &__input {
     padding: 1rem;
     border: 3px solid $white;
     border-radius: 25px;
-    :focus {
-      border: 3px solid $salmon;
+    &:focus {
     }
   }
 }
