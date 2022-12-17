@@ -1,9 +1,10 @@
 @use "../../styles/partials/variables.scss" as *;
+@use "../../styles/partials/mixins.scss" as *;
 
 .card {
-  padding: 2rem 1rem;
+  padding: 2rem 2rem;
   background-color: $semi-transparent;
-  margin: 1rem;
+  margin: 2rem;
   border-radius: 25px;
   text-align: center;
 
