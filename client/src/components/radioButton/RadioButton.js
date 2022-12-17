@@ -2,16 +2,16 @@ import "./RadioButton.scss";
 
 function RadioButton(props) {
   return (
-    <div className="radio-form">
+    <label className="radio-button">
       <input
-        className="radio-form__button"
+        className="radio-button__input"
         name="category"
         type="radio"
         value={props.value}
         onChange={props.onChange}
       />
-      <label>{props.labelName}</label>
-    </div>
+      <span className="radio-button__details">{props.labelName}</span>
+    </label>
   );
 }
 export default RadioButton;

@@ -1,1 +1,16 @@
 @use "../../styles/partials/variables.scss" as *;
+.home-page {
+  &__logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    width: 25rem;
+    height: 25rem;
+  }
+  &__text-field-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

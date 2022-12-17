@@ -1,0 +1,14 @@
+@use "../../styles/partials/variables.scss" as *;
+
+.text-field {
+  padding: 1rem;
+
+  &__input {
+    padding: 1rem;
+    border: 3px solid $white;
+    border-radius: 25px;
+    :focus {
+      border: 3px solid $salmon;
+    }
+  }
+}

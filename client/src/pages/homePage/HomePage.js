@@ -5,6 +5,8 @@ import "./HomePage.scss";
 import Button from "../../components/button/Button";
 import Card from "../../components/card/Card";
 import RadioButton from "../../components/radioButton/RadioButton";
+import logo from "../../assets/logos/30-Seconds.png";
+import TextField from "../../components/textField/TextField";
 
 function HomePage() {
   const [playerOne, setPlayerOne] = useState("");
@@ -36,23 +38,32 @@ function HomePage() {
 
   return (
     <div className="home-page">
-      <img></img>
+      <img className="home-page__logo" src={logo} alt="logo"></img>
 
       <div className="home-page__form">
         <Card>
           <form onSubmit={handleSubmit}>
             <h2>Who is playing?</h2>
-            <label>Player 1</label>
-            <br />
-            <input
-              placeholder="Name"
-              name="playerOne"
-              type="text"
-              value={playerOne}
-              onChange={(e) => setPlayerOne(e.target.value)}
-            />
-            <br />
-            <label htmlFor="playerTwo">Player 2</label>
+            <div className="home-page__text-field-wrapper">
+              <TextField
+                labelName={"Player 1"}
+                placeholder={"Name"}
+                name={"playerOne"}
+                type={"text"}
+                value={playerOne}
+                onChange={(e) => setPlayerOne(e.target.value)}
+              ></TextField>
+              <br />
+              <TextField
+                labelName={"Player 2"}
+                placeholder={"Name"}
+                name={"playerTwo"}
+                type={"text"}
+                value={playerTwo}
+                onChange={(e) => setPlayerTwo(e.target.value)}
+              ></TextField>
+            </div>
+            {/* <label htmlFor="playerTwo">Player 2</label>
             <br />
             <input
               placeholder="Name"
@@ -60,7 +71,7 @@ function HomePage() {
               type="text"
               value={playerTwo}
               onChange={(e) => setPlayerTwo(e.target.value)}
-            />
+            /> */}
             <h2>Pick your category</h2>
             {categories?.map((element, index) => {
               return (
