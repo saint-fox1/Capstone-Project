@@ -1,72 +1,66 @@
 [
   {
-    "id": "1",
     "category": "corporate",
     "text": "What inspires you?"
   },
   {
-    "id": "2",
     "category": "corporate",
     "text": "What do you value the most in the workplace?"
   },
   {
-    "id": "3",
+    "category": "corporate",
+    "text": "How do you like to spend your time outside of work?"
+  },
+  {
+    "category": "corporate",
+    "text": "What kinds of activities drain you?"
+  },
+  {
     "category": "party",
     "text": "What's your drink of choice?"
   },
   {
-    "id": "4",
     "category": "party",
     "text": "What is your biggest pet peeve?"
   },
   {
-    "id": "5",
+    "category": "party",
+    "text": "What's your guilty pleasure?"
+  },
+  {
+    "category": "party",
+    "text": "What's something you've done, but you'll never do again??"
+  },
+  {
     "category": "amigos",
     "text": "What is your biggest fear?"
   },
   {
-    "id": "6",
     "category": "amigos",
     "text": "Who did you want to be when you grow up when you were a kid?"
   },
   {
-    "id": "7",
+    "category": "amigos",
+    "text": "What's something your family doesn't know about you?"
+  },
+  {
+    "category": "amigos",
+    "text": "What's the most awkward first date you've ever been on?"
+  },
+  {
     "category": "caliente",
     "text": "What is your fondest memory together?"
   },
   {
-    "id": "8",
     "category": "caliente",
     "text": "What is your ideal date?"
   },
   {
-    "id": "9",
     "category": "caliente",
-    "text": "Question9?"
+    "text": "What is your love language?"
   },
   {
-    "id": "10",
     "category": "caliente",
-    "text": "Question10?"
-  },
-  {
-    "id": "11",
-    "category": "caliente",
-    "text": "Question11?"
-  },
-  {
-    "id": "12",
-    "category": "caliente",
-    "text": "Question12?"
-  },
-  {
-    "id": "13",
-    "category": "caliente",
-    "text": "Question13?"
-  },
-  {
-    "id": "14",
-    "category": "caliente",
-    "text": "Question14?"
+    "text": "What do I do that makes you smile??"
   }
 ]

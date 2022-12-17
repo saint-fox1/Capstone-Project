@@ -2,6 +2,11 @@ import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./HomePage.scss";
+import Button from "../../components/button/Button";
+import Card from "../../components/card/Card";
+import RadioButton from "../../components/radioButton/RadioButton";
+import logo from "../../assets/logos/30-Seconds.png";
+import TextField from "../../components/textField/TextField";
 
 function HomePage() {
   const [playerOne, setPlayerOne] = useState("");
@@ -32,9 +37,58 @@ function HomePage() {
   }, [categories]);
 
   return (
-    <div className="main-content-wrapper">
-      <h1>30 Seconds - GO!</h1>
-      <div>
+    <div className="home-page">
+      <img className="home-page__logo" src={logo} alt="logo"></img>
+
+      <div className="home-page__form">
+        <Card>
+          <form onSubmit={handleSubmit}>
+            <h2>Who is playing?</h2>
+            <div className="home-page__text-field-wrapper">
+              <TextField
+                labelName={"Player 1"}
+                placeholder={"Name"}
+                name={"playerOne"}
+                type={"text"}
+                value={playerOne}
+                onChange={(e) => setPlayerOne(e.target.value)}
+              ></TextField>
+              <br />
+              <TextField
+                labelName={"Player 2"}
+                placeholder={"Name"}
+                name={"playerTwo"}
+                type={"text"}
+                value={playerTwo}
+                onChange={(e) => setPlayerTwo(e.target.value)}
+              ></TextField>
+            </div>
+            {/* <label htmlFor="playerTwo">Player 2</label>
+            <br />
+            <input
+              placeholder="Name"
+              name="playerTwo"
+              type="text"
+              value={playerTwo}
+              onChange={(e) => setPlayerTwo(e.target.value)}
+            /> */}
+            <h2>Pick your category</h2>
+            {categories?.map((element, index) => {
+              return (
+                <RadioButton
+                  key={`category-${index}`}
+                  value={element.name}
+                  labelName={element.name}
+                  onChange={(e) => setCategory(e.target.value)}
+                ></RadioButton>
+              );
+            })}
+            <Button text="Create a game!"></Button>
+          </form>
+        </Card>
+      </div>
+
+      <Card>
         <h2>About</h2>
         <p>
           This game will bring you closer to anyone, whether it is a friend,
@@ -45,6 +99,8 @@ function HomePage() {
           knows, you might just learn something new and unpredicted about each
           other.
         </p>
+      </Card>
+      <Card>
         <h2>How to</h2>
         <p>
           You only need 2 players for this game. Players take turns asking each
@@ -54,59 +110,7 @@ function HomePage() {
           Then, players switch. Choose your category, depending on how spicy you
           want the questions to be.
         </p>
-        <h2>Rules</h2>
-        <ul>
-          <li>Shush while the other person is talking</li>
-          <li>If you are talking, keep talking - about anything really </li>
-          <li>Relax and don't take yourselves too seriously</li>
-        </ul>
-
-        {/* Game Setup */}
-        <div>
-          <form onSubmit={handleSubmit}>
-            <h3>Who is playing?</h3>
-            <label>Player 1</label>
-            <br />
-            <input
-              placeholder="Name"
-              name="playerOne"
-              type="text"
-              value={playerOne}
-              onChange={(e) => setPlayerOne(e.target.value)}
-            />
-            <br />
-            <label htmlFor="playerTwo">Player 2</label>
-            <br />
-            <input
-              placeholder="Name"
-              name="playerTwo"
-              type="text"
-              value={playerTwo}
-              onChange={(e) => setPlayerTwo(e.target.value)}
-            />
-            <br />
-            <h3>Pick your category</h3>
-            {categories?.map((element, index) => {
-              return (
-                <div key={`category-${index}`}>
-                  <input
-                    name="category"
-                    type="radio"
-                    value={element.name}
-                    onChange={(e) => setCategory(e.target.value)}
-                  />
-                  <label>{element.name}</label>
-                </div>
-              );
-            })}
-            <input
-              className="submitButton"
-              type="submit"
-              value="Create a game!"
-            />
-          </form>
-        </div>
-      </div>
+      </Card>
     </div>
   );
 }

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
+import Button from "../../components/button/Button";
+import "./PlayPage.scss";
 
 const GAME_STATE = {
   INSTRUCTION_PROMPT: 0,
@@ -54,50 +56,57 @@ function PlayPage() {
   }
 
   return (
-    <div>
-      {/* Prompt One  */}
-      {page === GAME_STATE.INSTRUCTION_PROMPT && (
-        <div>
-          <h3>
-            {isPlayerOneTurn ? playerOne : playerTwo} is answering the question,
-            while {isPlayerOneTurn ? playerTwo : playerOne} is listening...
-          </h3>
-          <button
-            onClick={() => {
-              setPage(GAME_STATE.QUESTION);
-              setTime(30);
-              setIsPlayerOneTurn(!isPlayerOneTurn);
-            }}
-          >
-            Ready!
-          </button>
-        </div>
-      )}
-      {/* Question  */}
-      {page === GAME_STATE.QUESTION && (
-        <div>
-          <h3>{questions[questionIndex].text}</h3>
-          <p>{time} sec</p>
-          <button
-            onClick={() => {
-              setQuestionIndex(questionIndex + 1);
-              if (questionIndex === questions.length - 1) {
-                setPage(GAME_STATE.GAME_OVER);
-              } else setPage(GAME_STATE.INSTRUCTION_PROMPT);
-            }}
-          >
-            Next
-          </button>
-        </div>
-      )}
-      {/* Game Over  */}
-      {page === GAME_STATE.GAME_OVER && (
-        <div>
-          <h3>Game over!</h3>
-          <Link to="/">Play again?</Link>
-          <Link to="/">Return to HomePage</Link>
-        </div>
-      )}
+    <div className="play-page">
+      <div className="play-page__prompt">
+        {/* Prompt One  */}
+        {page === GAME_STATE.INSTRUCTION_PROMPT && (
+          <div>
+            <h3 className="play-page__main-text-content">
+              {isPlayerOneTurn ? playerOne : playerTwo}'s turn to talk
+            </h3>
+            <Button
+              text="Ready!"
+              onClick={() => {
+                setPage(GAME_STATE.QUESTION);
+                setTime(30);
+                setIsPlayerOneTurn(!isPlayerOneTurn);
+              }}
+            ></Button>
+          </div>
+        )}
+        {/* Question  */}
+        {page === GAME_STATE.QUESTION && (
+          <div className="play-page__question">
+            <h3 className="play-page__main-text-content">
+              {" "}
+              {questions[questionIndex].text}
+            </h3>
+            <p className="play-page__timer">{time}</p>
+            <Button
+              text="Next"
+              onClick={() => {
+                setQuestionIndex(questionIndex + 1);
+                if (questionIndex === questions.length - 1) {
+                  setPage(GAME_STATE.GAME_OVER);
+                } else setPage(GAME_STATE.INSTRUCTION_PROMPT);
+              }}
+            ></Button>
+          </div>
+        )}
+        {/* Game Over  */}
+        {page === GAME_STATE.GAME_OVER && (
+          <div>
+            <h3 className="play-page__main-text-content">Game over!</h3>
+            <Button
+              onClick={() => window.location.reload()}
+              text="Play again?"
+            ></Button>
+            <Link to="/">
+              <Button text="Return to Home Page"></Button>
+            </Link>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
