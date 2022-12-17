@@ -1,0 +1,17 @@
+@use "../../styles/partials/variables.scss" as *;
+@use "../../styles/partials/mixins.scss" as *;
+
+.card {
+  padding: 2rem 2rem;
+  background-color: $semi-transparent;
+  margin: 2rem;
+  border-radius: 25px;
+  text-align: center;
+
+  :first-child {
+    margin-top: 0;
+  }
+  :last-child {
+    margin-bottom: 0;
+  }
+}
