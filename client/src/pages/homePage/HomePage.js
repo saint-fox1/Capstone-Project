@@ -2,6 +2,9 @@ import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./HomePage.scss";
+import Button from "../../components/button/Button";
+import Card from "../../components/card/Card";
+import RadioButton from "../../components/radioButton/RadioButton";
 
 function HomePage() {
   const [playerOne, setPlayerOne] = useState("");
@@ -32,39 +35,13 @@ function HomePage() {
   }, [categories]);
 
   return (
-    <div className="main-content-wrapper">
-      <h1>30 Seconds - GO!</h1>
-      <div>
-        <h2>About</h2>
-        <p>
-          This game will bring you closer to anyone, whether it is a friend,
-          colleague or a crush you've been meaning to make a move on. Both of
-          you get to ask each other questions and get sincere answers. Sincere,
-          because you won't get time to think them through! On top of that, you
-          get to talk for 30 seconds straight and no one can interrupt you. Who
-          knows, you might just learn something new and unpredicted about each
-          other.
-        </p>
-        <h2>How to</h2>
-        <p>
-          You only need 2 players for this game. Players take turns asking each
-          other a question that they see in the prompt. The player whose turn to
-          answer, gets 30 seconds to talk. The caveat is that they HAVE to KEEP
-          TALKING non-stop, even if they derailed from the original question.
-          Then, players switch. Choose your category, depending on how spicy you
-          want the questions to be.
-        </p>
-        <h2>Rules</h2>
-        <ul>
-          <li>Shush while the other person is talking</li>
-          <li>If you are talking, keep talking - about anything really </li>
-          <li>Relax and don't take yourselves too seriously</li>
-        </ul>
+    <div className="home-page">
+      <img></img>
 
-        {/* Game Setup */}
-        <div>
+      <div className="home-page__form">
+        <Card>
           <form onSubmit={handleSubmit}>
-            <h3>Who is playing?</h3>
+            <h2>Who is playing?</h2>
             <label>Player 1</label>
             <br />
             <input
@@ -84,29 +61,45 @@ function HomePage() {
               value={playerTwo}
               onChange={(e) => setPlayerTwo(e.target.value)}
             />
-            <br />
-            <h3>Pick your category</h3>
+            <h2>Pick your category</h2>
             {categories?.map((element, index) => {
               return (
-                <div key={`category-${index}`}>
-                  <input
-                    name="category"
-                    type="radio"
-                    value={element.name}
-                    onChange={(e) => setCategory(e.target.value)}
-                  />
-                  <label>{element.name}</label>
-                </div>
+                <RadioButton
+                  key={`category-${index}`}
+                  value={element.name}
+                  labelName={element.name}
+                  onChange={(e) => setCategory(e.target.value)}
+                ></RadioButton>
               );
             })}
-            <input
-              className="submitButton"
-              type="submit"
-              value="Create a game!"
-            />
+            <Button text="Create a game!"></Button>
           </form>
-        </div>
+        </Card>
       </div>
+
+      <Card>
+        <h2>About</h2>
+        <p>
+          This game will bring you closer to anyone, whether it is a friend,
+          colleague or a crush you've been meaning to make a move on. Both of
+          you get to ask each other questions and get sincere answers. Sincere,
+          because you won't get time to think them through! On top of that, you
+          get to talk for 30 seconds straight and no one can interrupt you. Who
+          knows, you might just learn something new and unpredicted about each
+          other.
+        </p>
+      </Card>
+      <Card>
+        <h2>How to</h2>
+        <p>
+          You only need 2 players for this game. Players take turns asking each
+          other a question that they see in the prompt. The player whose turn to
+          answer, gets 30 seconds to talk. The caveat is that they HAVE to KEEP
+          TALKING non-stop, even if they derailed from the original question.
+          Then, players switch. Choose your category, depending on how spicy you
+          want the questions to be.
+        </p>
+      </Card>
     </div>
   );
 }

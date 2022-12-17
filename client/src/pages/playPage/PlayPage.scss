@@ -1,5 +1,24 @@
 @use "../../styles/partials/variables.scss" as *;
-* {
-  background-color: $deep-blue;
-  color: azure;
+
+.play-page {
+  &__prompt {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 2rem;
+  }
+  &__question {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__timer {
+    font-size: 3rem;
+    margin: 2rem 0;
+    font-weight: bold;
+  }
+  &__main-text-content {
+    text-align: center;
+    font-size: 2rem;
+  }
 }

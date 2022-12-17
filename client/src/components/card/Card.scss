@@ -1,0 +1,15 @@
+@use "../../styles/partials/variables.scss" as *;
+
+.card {
+  padding: 1rem;
+  background-color: $semi-transparent;
+  margin: 1rem;
+  border-radius: 25px;
+
+  :first-child {
+    margin-top: 0;
+  }
+  :last-child {
+    margin-bottom: 0;
+  }
+}

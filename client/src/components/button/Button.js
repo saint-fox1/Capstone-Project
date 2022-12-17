@@ -1,18 +1,21 @@
 import "./Button.scss";
 
-function Button(props) {
-  const onClick = () => {
-    if (props.onClick) {
-      setTimeout(() => {
-        props.onClick();
-      }, 250);
-    }
-  };
+const BUTTON_ANIMATION_TIMING = 250;
 
+function Button(props) {
   return (
-    <button className="button" onClick={onClick}>
-      {props.text}
-    </button>
+    <div className="button-wrapper">
+      <button
+        className="button"
+        onClick={() => {
+          if (props.onClick) {
+            setTimeout(() => props.onClick(), BUTTON_ANIMATION_TIMING);
+          }
+        }}
+      >
+        {props.text}
+      </button>
+    </div>
   );
 }
 
